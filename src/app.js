@@ -1,3 +1,6 @@
+
+var qrcode = $('#qrcode');
+
 App = {
   loading: false,
   contracts: {},
@@ -54,13 +57,12 @@ App = {
 
   loadContract: async () => {
     // Create a JavaScript version of the smart contract
-    const todoList = await $.getJSON('TodoList.json');
-    App.contracts.TodoList = TruffleContract(todoList);
-    App.contracts.TodoList.setProvider(App.web3Provider)
-    // console.log(todoList)
+    const demo = await $.getJSON('Demo.json');
+    App.contracts.Demo = TruffleContract(demo);
+    App.contracts.Demo.setProvider(App.web3Provider)
 
     // Hydrate the smart contract with values from the blockchain
-    App.todoList = await App.contracts.TodoList.deployed();
+    App.demo = await App.contracts.Demo.deployed();
     
   },
 
@@ -78,61 +80,64 @@ App = {
     $('#account').html(App.account)
 
     // Render Tasks
-    await App.renderTasks()
+    await App.renderData()
 
     // Update loading state
     App.setLoading(false)
   },
 
-  renderTasks: async () => {
+  renderData: async () => {
     // Load the total task count from the blockchain
-    const taskCount = await App.todoList.taskCount()
-    const $taskTemplate = $('.taskTemplate')
+    const dataCount = await App.demo.dataCount();
+    const $datumTemplate = $('.datumTemplate')
 
     // Render out each task with a new task template
-    for (var i = 1; i <= taskCount; i++) {
+    for (var i = 1; i <= dataCount; i++) {
       // Fetch the task data from the blockchain
-      const task = await App.todoList.tasks(i)
-      const taskId = task[0].toNumber()
-      const taskContent = task[1]
-      const taskCompleted = task[2]
+      const datum = await App.demo.data(i)
+      const datumID = datum[0].toNumber()
+      const datumContent = datum[1]
 
-      // Create the html for the task
-      const $newTaskTemplate = $taskTemplate.clone()
-      $newTaskTemplate.find('.content').html(taskContent)
-      $newTaskTemplate.find('input')
-                      .prop('name', taskId)
-                      .prop('checked', taskCompleted)
-                      .on('click', App.toggleCompleted)
+      // Create the html for the datum
+      const $newDatumTemplate = $datumTemplate.clone()
+      $newDatumTemplate.find('.content').html(datumContent)
 
       // Put the task in the correct list
-      if (taskCompleted) {
-        $('#completedTaskList').append($newTaskTemplate)
-      } else {
-        $('#taskList').append($newTaskTemplate)
+      $('#dataList').append($newDatumTemplate)
+
+      if (localStorage.getItem('qr') && dataCount > 1){
+          qrcode.prop('src',localStorage.getItem('qr') );
+          qrcode.show();
       }
 
       // Show the task
-      $newTaskTemplate.show()
+      $newDatumTemplate.show()
     }
   },
 
-  createTask: async () => {
+  createDatum: async () => {
     App.setLoading(true)
-    const content = $('#newTask').val()
+    const content = $('#newDatum').val()
     // https://stackoverflow.com/questions/67273763/blockchain-tutorial-error-the-send-transactions-from-field-must-be-defined
-    // await App.todoList.createTask(content)
-    await App.todoList.createTask(content, {from: App.account})
+    // await App.demo.createTask(content)
+    await App.demo.createDatum(content, {from: App.account})
+
+    var response = await fetch('http://localhost:5000/qr', {
+      method: 'POST',
+      body: JSON.stringify({
+        datum:content
+      }), // string or object
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    response = await response.json();
+    localStorage.setItem('qr', response.qr);
     // refresh the page to refetch the tasks
     window.location.reload()
   },
 
-  toggleCompleted: async (e) => {
-    App.setLoading(true)
-    const taskId = e.target.name
-    await App.todoList.toggleCompleted(taskId, {from: App.account})
-    window.location.reload()
-  },
+
 
   setLoading: (boolean) => {
     App.loading = boolean
