@@ -1,0 +1,4 @@
+1. truffle compile
+2. truffle migrate
+3. cd client
+4. npm run start
