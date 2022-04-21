@@ -11,37 +11,28 @@ class Header extends Component {
           <a
             className="navbar-brand col-sm-3 col-md-2 mr-0"
             target="_blank"
-            href="#"
+            href="/"
           >
             Demo
           </a>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="#">
+                <a className="nav-link active" aria-current="page" href="/">
                   Home
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Features
+                <a className="nav-link" href="/add">
+                  Add
                 </a>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#">
-                  Pricing
+                <a className="nav-link" href="/">
+                  Detail
                 </a>
               </li>
-              <li className="nav-item">
-                <a
-                  className="nav-link disabled"
-                  href="#"
-                  tabIndex="-1"
-                  aria-disabled="true"
-                >
-                  Disabled
-                </a>
-              </li>
+              
             </ul>
           </div>
           <ul className="navbar-nav px-3">

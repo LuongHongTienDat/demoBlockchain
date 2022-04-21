@@ -3,14 +3,22 @@ import DemoContract from "./contracts/Demo.json";
 import getWeb3 from "./getWeb3";
 import Header from "./components/header";
 import Footer from "./components/footer";
-import {BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.css";
 import AddProductInfo from "./components/addProductInfo";
 import ShowProductInfo from "./components/showProductInfo";
 
 class App extends Component {
-  state = { storageValue: "0", web3: null, accounts: null, contract: null };
+
+
+  state = {
+    storageValue: "0",
+    web3: null,
+    accounts: null,
+    contract: null,
+  };
+
 
   componentDidMount = async () => {
     try {
@@ -63,18 +71,44 @@ class App extends Component {
     }
     return (
       <div className="App">
-        <Header address={this.state.accounts[0]}></Header>
+        <Header address={this.state.accounts[0]}></Header>        
         <main>
           <Router>
             <Routes>
-              <Route exact path="/" element={<AddProductInfo />}></Route>
-              <Route exact path="/:id" element={<ShowProductInfo/>} />
+              <Route
+                exact
+                path="/"
+                element={<AddProductInfo onSubmit={this.addProductInfo} />}
+              ></Route>
+              <Route
+                exact
+                path="/:id"
+                element={
+                  <ShowProductInfo getProductInfo={this.getProductInfo} />
+                }
+              />
             </Routes>
           </Router>
         </main>
         <Footer></Footer>
       </div>
     );
+  }
+
+  addDetumExample() {}
+
+  addProductInfo(productInfo) {
+    console.log(productInfo);
+    // const response = await contract.methods.createDatum(productInfo).call();
+  }
+
+  getProductInfo(id) {
+    // const obj = await contract.methods.createDatum(id).call();
+    // return obj;
+    return {
+      id: "1",
+      location: "Dong Nai",
+    };
   }
 }
 

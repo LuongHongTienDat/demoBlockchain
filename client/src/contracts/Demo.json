@@ -1385,14 +1385,33 @@
   },
   "networks": {
     "5777": {
-      "events": {},
+      "events": {
+        "0x0998893a5d14da7bfb00a82a3c0a42c7eb350ba99d042bae562ff5920c5efb7b": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": false,
+              "name": "id",
+              "type": "uint256"
+            },
+            {
+              "indexed": false,
+              "name": "content",
+              "type": "string"
+            }
+          ],
+          "name": "DatumCreated",
+          "type": "event",
+          "signature": "0x0998893a5d14da7bfb00a82a3c0a42c7eb350ba99d042bae562ff5920c5efb7b"
+        }
+      },
       "links": {},
-      "address": "0x7865e7518785A74a50Ca0962b9b79dB475b8Be72",
-      "transactionHash": "0x993e0c54a2aaf3f58d65741558e75051cbda42a0ccfd94d9527feac83147dfdf"
+      "address": "0xa4440F9f5da77756f1D5533aBDF1B2F3cca34358",
+      "transactionHash": "0xa93fa1c1a348417635af3f0387f946603742fbebf22ef3372fa01fc24686a70e"
     }
   },
   "schemaVersion": "3.0.1",
-  "updatedAt": "2022-04-20T18:08:32.819Z",
+  "updatedAt": "2022-04-21T14:13:03.088Z",
   "devdoc": {
     "methods": {}
   },
