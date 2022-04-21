@@ -35,7 +35,6 @@ class AddProductInfo extends Component {
     const info = Object.keys(this.state)
     
     this.props.onSubmit(this.state)
-    console.log(this)
     this.showModal();
   }
 
