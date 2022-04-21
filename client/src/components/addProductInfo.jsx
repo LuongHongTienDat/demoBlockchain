@@ -55,10 +55,10 @@ class AddProductInfo extends Component {
         <Modal show={this.state.show} handleClose={this.hideModal}>
           <p>Modal</p>
         </Modal>
-        <div className="container w-75 text-left mt-4">
+        <div className="container w-75 text-left mt-4 text-start">
           <h2>Add New Product Information</h2>
           <form className="mt-4" onSubmit={this.handleSubmit}>
-            <div className="form-group">
+            <div className="form-group mb-3">
               <label htmlFor="exampleInputName1">Name</label>
               <input
                 type="text"
@@ -71,7 +71,7 @@ class AddProductInfo extends Component {
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-group mb-3">
               <label htmlFor="exampleInputLocation1">Location</label>
               <input
                 type="text"
@@ -84,7 +84,7 @@ class AddProductInfo extends Component {
               />
             </div>
             
-            <div className="form-group">
+            <div className="form-group mb-3">
               <label htmlFor="exampleInputPassword1">Distributor</label>
               <input
                 type="text"
@@ -97,7 +97,7 @@ class AddProductInfo extends Component {
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-group mb-3">
               <label htmlFor="exampleInputEntryDate1">Entry Date</label>
               <input
                 type="date"
@@ -109,7 +109,7 @@ class AddProductInfo extends Component {
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-group mb-3">
               <label htmlFor="exampleInputExpiredDate1">Expired Date</label>
               <input
                 type="date"
@@ -121,7 +121,7 @@ class AddProductInfo extends Component {
               />
             </div>
 
-            <div className="form-group">
+            <div className="form-group mb-3">
               <label htmlFor="exampleInputDisplayedAt1">Displayed At</label>
               <input
                 type="text"
