@@ -1,0 +1,25 @@
+.footer-icon-row {
+    height: 64px; 
+    display: flex; 
+    justify-content: center;
+}
+
+.footer-icon {
+    display: flex;
+}
+
+.footer-icon-divider {
+    width: 2px;
+    height: 100%;
+    margin: 0 15px;
+    background-color: white;
+}
+
+.footer-copyright {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.footer {
+    margin-top: 64px;
+    background-color: #dfdfdf; 
+}
