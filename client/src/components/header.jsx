@@ -13,25 +13,11 @@ class Header extends Component {
             target="_blank"
             href="/"
           >
-            Demo
+                 <img src="https://cdn2.iconfinder.com/data/icons/circular-economy-dazzle-vol-1/256/Circular_Supply_Chain-512.png" height="60" alt="logo"/>
           </a>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
-                  Home
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/add">
-                  Add
-                </a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link" href="/">
-                  Detail
-                </a>
-              </li>
+
               
             </ul>
           </div>

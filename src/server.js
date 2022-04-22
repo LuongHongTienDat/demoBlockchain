@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
   });
 
 app.post("/qr", async (req, res) => {
-    let qr = await QRCode.toDataURL(req.body.datum);
+    let qr = await QRCode.toDataURL(req.body.link);
     res.json({qr});
 });
 

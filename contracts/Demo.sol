@@ -15,7 +15,7 @@ contract Demo {
   );
 
   constructor() public {
-    createDatum("Initial datum");
+    createDatum("{}");
   }
 
   function createDatum(string memory _content) public {

@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
 .App {
+  font-family: 'Roboto', sans-serif;
   text-align: center;
 }
-
+h2{
+  font-weight: bolder;
+  font-style: italic;
+}
+#info-table{
+  padding-top: 10px;
+}
 .App-logo {
   height: 40vmin;
 }

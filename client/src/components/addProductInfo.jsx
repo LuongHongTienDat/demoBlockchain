@@ -10,6 +10,7 @@ class AddProductInfo extends Component {
     expiredDate: "",
     displayedAt: "",
     show: false,
+    qr:""
   };
 
   constructor(props){
@@ -21,7 +22,8 @@ class AddProductInfo extends Component {
     this.hideModal = this.hideModal.bind(this);
   }
   
-  showModal = () => {
+  showModal = (qr) => {
+    this.setState({ qr: qr });
     this.setState({ show: true });
   };
 
@@ -35,7 +37,12 @@ class AddProductInfo extends Component {
     const info = Object.keys(this.state)
     
     this.props.onSubmit(this.state)
-    this.showModal();
+          .then (()=>{
+            this.props.getQR()
+            .then((qr)=>{
+              this.showModal(qr);
+            })
+          })
   }
 
   handleChange(event){
@@ -53,7 +60,9 @@ class AddProductInfo extends Component {
     return (
       <React.Fragment>
         <Modal show={this.state.show} handleClose={this.hideModal}>
-          <p>Modal</p>
+          <p>QR for latest data</p>
+          <img src={this.state.qr} alt="QR Code" id="qrcode"/>    
+
         </Modal>
         <div className="container w-75 text-left mt-4 text-start">
           <h2>Add New Product Information</h2>
@@ -134,14 +143,14 @@ class AddProductInfo extends Component {
               />
             </div>
             
-            <button type="submit" className="btn btn-primary">
+            <button type="submit" className="btn btn-outline-info">
               Submit
             </button>
           </form>
         </div>
         <hr />
 
-        <div id="content" className="mt-4">
+        {/* <div id="content" className="mt-4">
           <form onSubmit={this.props.handleSubmit} className="">
             <input
               id="newDatum"
@@ -160,7 +169,7 @@ class AddProductInfo extends Component {
             </div>
             <div>{}</div>
           </ul>
-        </div>
+        </div> */}
       </React.Fragment>
     );
   }

@@ -56,7 +56,6 @@ class App extends Component {
     // Stores a given value, 5 by default.
     // const count = await contract.methods.set(5).send({ from: accounts[0] });
     const count = await contract.methods.dataCount().call();
-    console.log(count);
     // // Get the value from the contract to prove it worked.
     // const response = await contract.methods.get().call();
     const response = await contract.methods.createDatum("Sth").call();
@@ -78,7 +77,7 @@ class App extends Component {
               <Route
                 exact
                 path="/"
-                element={<AddProductInfo onSubmit={this.addProductInfo} />}
+                element={<AddProductInfo onSubmit={this.addProductInfo} getQR={this.getQR}/>}
               ></Route>
               <Route
                 exact
@@ -96,19 +95,35 @@ class App extends Component {
   }
 
   addDetumExample() {}
-
-  addProductInfo(productInfo) {
-    console.log(productInfo);
-    // const response = await contract.methods.createDatum(productInfo).call();
+  addProductInfo = async (productInfo) => {
+    const { accounts, contract } = this.state;
+    var newDatum = JSON.stringify(productInfo);
+    console.log(newDatum);
+    await contract.methods.createDatum(newDatum).send({ from: accounts[0] });
   }
 
-  getProductInfo(id) {
+  getProductInfo = async (id) =>{
+    const { accounts, contract } = this.state;
     // const obj = await contract.methods.createDatum(id).call();
     // return obj;
-    return {
-      id: "1",
-      location: "Dong Nai",
-    };
+    const datum = await contract.methods.data(Number(id)).call();
+    console.log(JSON.parse(datum[1]));
+    return await JSON.parse(datum[1]);
+  }
+  getQR = async ()=>{
+    const { accounts, contract } = this.state;
+    var index = await contract.methods.dataCount().call();
+    var response = await fetch('http://localhost:5000/qr', {
+      method: 'POST',
+      body: JSON.stringify({
+        link:'http://localhost:3000/'+String(index)
+      }), // string or object
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    response = await response.json();
+    return (response.qr);   
   }
 }
 
