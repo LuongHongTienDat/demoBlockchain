@@ -1,4 +1,4 @@
-# Ethereum Blockchain Application - Todo List
+# Ethereum Blockchain Application - QR creator for product data
 
 Simple demo of a Blockchain app powered by smart contracts. Understand how blockchain works and how to connect an application with a decentralized platform. 
 
@@ -14,8 +14,6 @@ Simple demo of a Blockchain app powered by smart contracts. Understand how block
 
 ## Deployment 
 ```bash
-# Clone 
-$ https://github.com/kenneth-liang/Ethereum-Todo-List-.git
 
 # Install dependencies 
 $ npm install -g truffle@5.0.2
@@ -45,5 +43,3 @@ Google Chrome extension turning your browser into a blockchain browser. Metamask
 <img width="351" alt="Screen Shot 2021-06-26 at 6 23 32 PM" src="https://user-images.githubusercontent.com/59374267/123530096-a02d3100-d6ab-11eb-9a1f-e4e51233f1f6.png">
 
 
-## Future
-* Upgrade User interface 
